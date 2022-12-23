@@ -42,6 +42,10 @@ module.exports = class CommandLine {
 		return args[0];
 	}
 
+	reportResults(output) {
+		this.writeOutput(output + "\n");
+	}
+
 };
 
 

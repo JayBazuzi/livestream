@@ -17,7 +17,7 @@ module.exports = class App {
 		const input = this._commandLine.parseArgs();
 		if (!input) { return; }
 		const output = rot13.transform(input);
-		this._commandLine.writeOutput(output + "\n");
+		this._commandLine.reportResults(output);
 	}
 
 };

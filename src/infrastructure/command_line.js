@@ -28,6 +28,20 @@ module.exports = class CommandLine {
 		return this._lastOutput;
 	}
 
+	parseArgs() {
+		const args = this.args();
+		if (args.length === 0) {
+			this.writeOutput("Usage: run text_to_transform\n");
+			return null;
+		}
+		if (args.length !== 1) {
+			this.writeOutput("too many arguments\n");
+			return null;
+		}
+
+		return args[0];
+	}
+
 };
 
 

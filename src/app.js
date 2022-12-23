@@ -24,22 +24,23 @@ module.exports = class App {
 			return null;
 		}
 
-		return args[0];
+		this.input = args[0];
 	}
 
-	reportResultToUser(output) {
-		this._commandLine.writeOutput(output + "\n");
+	reportResultToUser() {
+		if (!this.output) { return; }
+		this._commandLine.writeOutput(this.output + "\n");
 	}
 
-	transform(input) {
-		return rot13.transform(input);
+	transform() {
+		if (!this.input) { return; }
+		this.output = rot13.transform(this.input);
 	}
 
 	run() {
-		const input = this.getUserIntent();
-		if (!input) { return; }
-		const output = this.transform(input);
-		this.reportResultToUser(output);
+		this.getUserIntent();
+		this.transform();
+		this.reportResultToUser();
 	}
 
 };

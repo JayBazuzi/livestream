@@ -31,10 +31,14 @@ module.exports = class App {
 		this._commandLine.writeOutput(output + "\n");
 	}
 
+	transform(input) {
+		return rot13.transform(input);
+	}
+
 	run() {
 		const input = this.getUserIntent();
 		if (!input) { return; }
-		const output = rot13.transform(input);
+		const output = this.transform(input);
 		this.reportResultToUser(output);
 	}
 

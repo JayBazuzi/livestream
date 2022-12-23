@@ -13,18 +13,23 @@ module.exports = class App {
 		this._commandLine = commandLine;
 	}
 
-	run() {
+	getUserIntent() {
 		const args = this._commandLine.args();
 		if (args.length === 0) {
 			this._commandLine.writeOutput("Usage: run text_to_transform\n");
-			return;
+			return null;
 		}
 		if (args.length !== 1) {
 			this._commandLine.writeOutput("too many arguments\n");
-			return;
+			return null;
 		}
 
-		const input = args[0];
+		return args[0];
+	}
+
+	run() {
+		const input = this.getUserIntent();
+		if (!input) { return; }
 		const output = rot13.transform(input);
 		this._commandLine.writeOutput(output + "\n");
 	}

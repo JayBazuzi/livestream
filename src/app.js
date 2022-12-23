@@ -27,11 +27,15 @@ module.exports = class App {
 		return args[0];
 	}
 
+	reportResultToUser(output) {
+		this._commandLine.writeOutput(output + "\n");
+	}
+
 	run() {
 		const input = this.getUserIntent();
 		if (!input) { return; }
 		const output = rot13.transform(input);
-		this._commandLine.writeOutput(output + "\n");
+		this.reportResultToUser(output);
 	}
 
 };

@@ -21,7 +21,7 @@ describe("CommandLine", function() {
 
 	it("remembers last output", function() {
 		const commandLine = CommandLine.createNull();
-		commandLine.writeOutput("my last output");
+		commandLine._writeOutput("my last output");
 		assert.equal(commandLine.getLastOutput(), "my last output");
 	});
 

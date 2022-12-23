@@ -3,4 +3,4 @@
 
 const CommandLine = require("./command_line");
 
-CommandLine.createNull().writeOutput("this output should never be seen");
+CommandLine.createNull()._writeOutput("this output should never be seen");

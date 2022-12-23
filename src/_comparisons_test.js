@@ -34,7 +34,7 @@ describe.only("Comparison between test types for 'Usage' test case", function() 
 	/* TESTDOUBLE.JS
 	 * speed: 0.082ms (12,210 tests / sec)
 	 * error message:
-	 *   Error: Unsatisfied verification on test double `CommandLine.prototype.writeOutput`.
+	 *   Error: Unsatisfied verification on test double `CommandLine.prototype._writeOutput`.
 	 *
 	 *     Wanted:
 	 *       - called with `("""
@@ -54,15 +54,15 @@ describe.only("Comparison between test types for 'Usage' test case", function() 
 		td.when(commandLine.args()).thenReturn([]);
 
 		app.run();
-		td.verify(commandLine.writeOutput("Usage: run text_to_transform\n"));
+		td.verify(commandLine._writeOutput("Usage: run text_to_transform\n"));
 	}));
 
 
 	/* SINON
 	 * speed: 0.36ms (2,793 tests / sec)
 	 * error message:
-	 *       ExpectationError: Unexpected call: writeOutput(xxx)
-	 *	    Expected writeOutput(Usage: run text_to_transform
+	 *       ExpectationError: Unexpected call: _writeOutput(xxx)
+	 *	    Expected _writeOutput(Usage: run text_to_transform
 	 *	) once (never called)
 	 */
 
@@ -72,7 +72,7 @@ describe.only("Comparison between test types for 'Usage' test case", function() 
 		const app = App.create(commandLineMock.object);
 
 		commandLineMock.expects("args").returns([]);
-		commandLineMock.expects("writeOutput").withExactArgs("Usage: run text_to_transform\n");
+		commandLineMock.expects("_writeOutput").withExactArgs("Usage: run text_to_transform\n");
 
 		app.run();
 		commandLineMock.verify();

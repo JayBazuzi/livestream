@@ -19,7 +19,7 @@ module.exports = class CommandLine {
 		return this._process.argv.slice(2);
 	}
 
-	writeOutput(text) {
+	_writeOutput(text) {
 		this._process.stdout.write(text);
 		this._lastOutput = text;
 	}
@@ -31,11 +31,11 @@ module.exports = class CommandLine {
 	parseArgs() {
 		const args = this.args();
 		if (args.length === 0) {
-			this.writeOutput("Usage: run text_to_transform\n");
+			this._writeOutput("Usage: run text_to_transform\n");
 			return null;
 		}
 		if (args.length !== 1) {
-			this.writeOutput("too many arguments\n");
+			this._writeOutput("too many arguments\n");
 			return null;
 		}
 
@@ -43,7 +43,7 @@ module.exports = class CommandLine {
 	}
 
 	reportResults(output) {
-		this.writeOutput(output + "\n");
+		this._writeOutput(output + "\n");
 	}
 
 };

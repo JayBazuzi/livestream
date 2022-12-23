@@ -10,7 +10,7 @@ const childProcess = require("child_process");
 const path = require("path");
 
 describe.only("Comparison between test types for 'Usage' test case", function() {
-	this.timeout(10000);
+	this.timeout(20000);
 
 	/* NULLABLE INFRASTRUCTURE
 	 * speed: 0.00093ms (1,075,268 tests / sec)
